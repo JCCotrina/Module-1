@@ -7,20 +7,25 @@ import matplotlib.pyplot as plt
 import random
 import datasets
 
+# PTS = 50
+# DATASET = datasets.Simple(PTS, vis=True)
+# HIDDEN = 2
+# RATE = 0.5
 PTS = 50
-DATASET = datasets.Simple(PTS, vis=True)
-HIDDEN = 2
-RATE = 0.5
+DATASET = datasets.Xor(PTS, vis=True)
+HIDDEN = 10
+RATE = 0.4
 
 
 class Network(minitorch.Module):
     def __init__(self):
         super().__init__()
-
+        
         # Submodules
         self.layer1 = Linear(2, HIDDEN)
         self.layer2 = Linear(HIDDEN, HIDDEN)
         self.layer3 = Linear(HIDDEN, 1)
+
 
     def forward(self, x):
         h = [h.relu() for h in self.layer1.forward(x)]
